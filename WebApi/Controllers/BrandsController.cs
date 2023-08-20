@@ -1,11 +1,10 @@
 ﻿using Application.Features.Brands.Commands.Create;
+using Application.Features.Brands.Commands.Delete;
 using Application.Features.Brands.Commands.Update;
 using Application.Features.Brands.Queries.GetById;
 using Application.Features.Brands.Queries.GetList;
 using Core.Application.Requests;
 using Core.Application.Response;
-using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -15,9 +14,9 @@ namespace WebApi.Controllers
     public class BrandsController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody]CreateBrandCommand createBrandCommand)
+        public async Task<IActionResult> Add([FromBody] CreateBrandCommand createBrandCommand)
         {
-           var response= await Mediator.Send(createBrandCommand);
+            var response = await Mediator.Send(createBrandCommand);
 
             return Ok(response);
         }
@@ -46,12 +45,12 @@ namespace WebApi.Controllers
             return Ok(response);
         }
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete([FromRoute] Guid id)
-        //{
-        //    DeletedBrandResponse response = await Mediator.Send(new DeleteBrandCommand { Id = id });
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            DeletedBrandResponse response = await Mediator.Send(new DeleteBrandCommand { Id = id });
 
-        //    return Ok(response);
-        //}
+            return Ok(response);
+        }
     }
 }

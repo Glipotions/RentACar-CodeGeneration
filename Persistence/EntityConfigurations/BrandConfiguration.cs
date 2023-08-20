@@ -1,11 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistence.EntityConfigurations
 {
@@ -23,7 +18,7 @@ namespace Persistence.EntityConfigurations
 
             builder.HasIndex(indexExpression: b => b.Name, name: "UK_Brands_Name").IsUnique();
 
-            //builder.HasMany(b => b.Models);
+            builder.HasMany(b => b.Models);
 
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
         }
