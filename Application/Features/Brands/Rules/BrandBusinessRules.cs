@@ -1,6 +1,7 @@
 ﻿using Application.Features.Brands.Constants;
 using Application.Services.Repositories;
 using Core.Application.Rules;
+using Core.CrossCuttingConcerns.Exceptions.Types;
 using Domain.Entities;
 
 namespace Application.Features.Brands.Rules;
@@ -20,7 +21,7 @@ public class BrandBusinessRules : BaseBusinessRules
 
         if (result != null)
         {
-            //throw new BusinessException(BrandsMessages.BrandNameExists);
+            throw new BusinessException(BrandsMessages.BrandNameExists);
         }
     }
 }
