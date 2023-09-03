@@ -9,6 +9,9 @@ public class UpdateBrandCommand : IRequest<UpdatedBrandResponse>
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
+    public string? CacheKey => "";
+    public bool BypassCache => false;
+    public string? CacheGroupKey => "GetBrands";
 
     public class UpdateBrandCommandHandler : IRequestHandler<UpdateBrandCommand, UpdatedBrandResponse>
     {
